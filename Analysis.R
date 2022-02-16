@@ -22,11 +22,14 @@ library(tidyverse)
 #' @examples 
 #' `data <- load_expression('/project/bf528/project_1/data/example_intensity_data.csv')`
 load_expression <- function(filepath) {
-  exp_data <- readr::read_delim(filepath, delim = " ")
+  exp_data <- readr::read_delim(filepath, delim = ",")
+  exp_data %>% rownames("probe")
+  
   return(exp_data)
 }
 
-expr_data <- load_expression('example_intensity_data.csv')
+#expr_data <- load_expression('example_intensity_data.csv')
+expr_data <- load_expression('project_1.csv')
 
 
 filter_data <- function(tibble){
@@ -46,7 +49,7 @@ filter_20 <- filter_data(expr_data)
 
 
 variance_filter <- function(tibble) {
-
+  
   probes <- select(tibble, probe)
   data_copy <- select(tibble, -probe)
   df = ncol(data_copy) - 1
@@ -117,13 +120,13 @@ print(paste0("The number of genes that pass all of these thresholds: ",
 #' @examples
 #' `data <- load_expression('/project/bf528/project_1/data/example_intensity_data.csv')`
 transpose_expression <- function(filtered_expr_data) {
-
+  
   exp_data <- as_tibble(cbind(nms = names(filtered_expr_data), t(filtered_expr_data)))
   colnames(exp_data) <- exp_data[1,]
   exp_data <- exp_data[-1, ]
-
+  
   final_data <- exp_data %>% mutate(across(c(2:1483), as.double))
-
+  
   return (final_data)
 }
 
@@ -160,15 +163,25 @@ print(paste0("The number of samples in cluster 1 and 2: ", clusters[1]," and ", 
 annotation_matrix <- readr::read_delim("proj_metadata.csv", delim = ",")
 annotation_data <- select(annotation_matrix, c("cit-coloncancermolecularsubtype","geo_accession"))
 
-data <- as.matrix(Texpr_data[,-1])
-data <-t(data)
+cond <- annotation_data[,1] %>% 
+  rename("condition" = "cit-coloncancermolecularsubtype")
+
+DF <- select(Texpr_data, -1)
+data <- matrix(Texpr_data[,-1])
+DF_data <- as.matrix(sapply(DF, as.numeric)) 
+DF_data <- t(DF_data)
+
 data_names <- as.matrix(Texpr_data)
 
-  
+
 metadata <- annotation_data %>% 
   dplyr::right_join(Texpr_data,
-  by=c("geo_accession" = "probe")) %>%
+                    by=c("geo_accession" = "probe")) %>% 
   rename("condition" = "cit-coloncancermolecularsubtype")
+
+metadata <- metadata %>% mutate(cond = cond, .before = geo_accession)
+metadata <- select(metadata, -1)
+metadata <- metadata %>% rename(condition = cond)
 
 condition_colors <-
   transmute(
@@ -177,7 +190,8 @@ condition_colors <-
   )
 condition_colors <- t(condition_colors)
 
-heatmap(data, Colv = NA,
+heatmap(DF_data,
+        Colv = NA,
         scale="column",
         cexRow=1,
         cexCol = 0.9,
@@ -185,3 +199,15 @@ heatmap(data, Colv = NA,
         labCol=paste(data_names[,1],sep=""))
 
 
+# ## identify genes differentially expressed between the two clusters using a Welch t-test
+# c1 <- c(21, 18, 1,23,6,15,22,34,13,16,25,2,32,29,30,3,27,17,19,33,31,9,28)
+# c2 <- c(26,20,10,7,24,12,5,8,35,14,4,11)
+# 
+# x <- filter_cov[c1,] 
+# y <- filter_cov[c2,]
+# 
+# 
+# ttest = t.test(x[,-1],y[,-1])
+# names(ttest)
+# 
+# t.test(as.data.frame(x[,-1]), as.data.frame(y[,-1])) ## this works too
