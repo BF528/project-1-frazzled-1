@@ -141,3 +141,27 @@ write.csv(kegg_results, "final_kegg.csv")
 
 hallmarks_results$BH <- p.adjust(hallmarks_results$pvalue, method = "BH", n = length(hallmarks_results$pvalue))
 write.csv(hallmarks_results, "final_hallmarks.csv")
+
+# Statistically significant and enriched genesets
+# Kegg
+kegg_sig <- kegg_results[kegg_results$pvalue<0.05,]
+kegg_enr_num <- length(kegg_sig$gene_set)
+cat("Statistically enriched genesets in KEGG: ", kegg_enr_num, "\n")
+
+# GO:
+go_sig <- go_results[go_results$pvalue<0.05,]
+go_enr_num <- length(go_sig$gene_set)
+cat("Statistically enriched genesets in GO: ", go_enr_num, "\n")
+
+# Hallmark:
+hm_sig <- hallmarks_results[hallmarks_results$pvalue<0.05,]
+hm_enr_num <- length(hm_sig$gene_set)
+cat("Statistically enriched genesets in Hallmark: ", hm_enr_num, "\n")
+
+# Top 3 genesets for each:
+top3_kegg <- slice_min(kegg_results, order_by = pvalue, n=3)
+top3_go <- slice_min(go_results, order_by = pvalue, n=3)
+top3_hallmark <- slice_min(hallmarks_results, order_by = pvalue, n=3)
+top_3 <- rbind(top3_kegg, top3_go, top3_hallmark)
+print(top_3)
+write.csv(top_3, file="geneset_top_results.csv")
