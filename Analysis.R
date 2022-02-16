@@ -190,24 +190,29 @@ condition_colors <-
   )
 condition_colors <- t(condition_colors)
 
-heatmap(DF_data,
-        Colv = NA,
+heatmap(DF_data,Colv = NA,
         scale="column",
-        cexRow=1,
-        cexCol = 0.9,
+        cexRow=0.85,
+        cexCol = 0.35,
         ColSideColors=condition_colors,
         labCol=paste(data_names[,1],sep=""))
 
 
-# ## identify genes differentially expressed between the two clusters using a Welch t-test
-# c1 <- c(21, 18, 1,23,6,15,22,34,13,16,25,2,32,29,30,3,27,17,19,33,31,9,28)
-# c2 <- c(26,20,10,7,24,12,5,8,35,14,4,11)
-# 
-# x <- filter_cov[c1,] 
-# y <- filter_cov[c2,]
-# 
+## identify genes deferentially expressed between the two clusters using a Welch t-test
+c1 <- c(21, 18, 1,23,6,15,22,34,13,16,25,2,32,29,30,3,27,17,19,33,31,9,28)
+c2 <- c(26,20,10,7,24,12,5,8,35,14,4,11)
+x <- filter_cov[c1,]
+y <- filter_cov[c2,]
+
+f_data <- filter_cov
+
+f_data <- f_data %>% dplyr::mutate(cluster = case_when(probe %in% x$probe ~ "c1",
+                                   probe %in% y$probe ~ "c2") )
 # 
 # ttest = t.test(x[,-1],y[,-1])
 # names(ttest)
+# 
+# Results <- combn(colnames(data), 2, function(x) t.test(data[,x]), simplify = FALSE)
+# sapply(Results, "[", c("statistic", "p.value"))
 # 
 # t.test(as.data.frame(x[,-1]), as.data.frame(y[,-1])) ## this works too
