@@ -6,6 +6,8 @@ A brief description of what this repository is for and what it contains
 
 Vridhi Vinaykiya(Biologist) - vridhiv@bu.edu
 Kyra Griffin (Analysist) - ke31grif@bu.edu
+Adalee Koshiol(Data Curator) - akoshiol@bu.edu
+Srija Chillamcherla (Programmer) - srija@bu.edu
 
 # Repository Contents
 
