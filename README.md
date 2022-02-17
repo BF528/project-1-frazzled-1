@@ -4,8 +4,8 @@ A brief description of what this repository is for and what it contains
 
 # Contributors
 
-Vridhi Vinaykiya(Biologist) - vridhiv@bu.edu \n
-Kyra Griffin (Analysist) = ke31grif@bu.edu
+Vridhi Vinaykiya(Biologist) - vridhiv@bu.edu
+Kyra Griffin (Analysist) - ke31grif@bu.edu
 
 # Repository Contents
 
