@@ -1,6 +1,6 @@
 # Project Description
 
-A brief description of what this repository is for and what it contains
+An analysis of microarray dataset that generated and described in Marisa, et. al. Gene expression classification of colon cancer into molecular subtypes: characterization, validation, and prognostic value. PLoS Med 2013;10(5):e1001453. PMID: 23700391.https://pubmed.ncbi.nlm.nih.gov/23700391/
 
 # Contributors
 
