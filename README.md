@@ -4,13 +4,13 @@ An analysis of microarray dataset that generated and described in Marisa, et. al
 
 # Contributors
 
-Vridhi Vinaykiya(Biologist) - vridhiv@bu.edu
-Kyra Griffin (Analysist) - ke31grif@bu.edu
-Adalee Koshiol(Data Curator) - akoshiol@bu.edu
+Vridhi Vinaykiya(Biologist) - vridhiv@bu.edu<br>
+Kyra Griffin (Analysist) - ke31grif@bu.edu<br>
+Adalee Koshiol(Data Curator) - akoshiol@bu.edu<br>
 Srija Chillamcherla (Programmer) - srija@bu.edu
 
 # Repository Contents
 
-programmer.R - Data preprocessing and quality control
-Analysis.R - Noise filtering & dimensionality reduction; Hierarchical clustering & subtype discovery
+programmer.R - Data preprocessing and quality control<br>
+Analysis.R - Noise filtering & dimensionality reduction; Hierarchical clustering & subtype discovery<br>
 BiologistPart.R - In depth analysis of differentially expressed probe sets, and Fisher Exact test.
