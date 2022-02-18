@@ -13,4 +13,5 @@ Srija Chillamcherla (Programmer) - srija@bu.edu
 
 final programmer.R - Data preprocessing and quality control<br>
 Analysis.R - Noise filtering & dimensionality reduction; Hierarchical clustering & subtype discovery<br>
-BiologistPart.R - In depth analysis of differentially expressed probe sets, and Fisher Exact test.
+BiologistPart.R - In depth analysis of differentially expressed probe sets, and Fisher Exact test. <br>
+Project 1 - Microarray Based Tumor Classification.docx - Final write up on the project 1 analysis.
