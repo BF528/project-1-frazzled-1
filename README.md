@@ -11,6 +11,6 @@ Srija Chillamcherla (Programmer) - srija@bu.edu
 
 # Repository Contents
 
-programmer.R - Data preprocessing and quality control<br>
+final programmer.R - Data preprocessing and quality control<br>
 Analysis.R - Noise filtering & dimensionality reduction; Hierarchical clustering & subtype discovery<br>
 BiologistPart.R - In depth analysis of differentially expressed probe sets, and Fisher Exact test.
