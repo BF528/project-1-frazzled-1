@@ -11,4 +11,6 @@ Srija Chillamcherla (Programmer) - srija@bu.edu
 
 # Repository Contents
 
-Provide a brief description of each script/code file in this repo, what it does, and how to execute it
+programmer.R - Data preprocessing and quality control
+Analysis.R - Noise filtering & dimensionality reduction; Hierarchical clustering & subtype discovery
+BiologistPart.R - In depth analysis of differentially expressed probe sets, and Fisher Exact test.
